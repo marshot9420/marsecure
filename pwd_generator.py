@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 from urllib.parse import urlparse
 
 
@@ -20,23 +21,28 @@ def generate_password():
 root = tk.Tk()
 root.title("Password Generator")
 
-url_label = tk.Label(root, text="Enter URL:")
-url_label.pack()
+style = ttk.Style()
+style.configure("TLabel", font=("Arial", 14))
+style.configure("TButton", font=("Arial", 12))
+style.configure("TEntry", font=("Arial", 12))
 
-url_entry = tk.Entry(root)
-url_entry.pack()
+url_label = ttk.Label(root, text="URL 입력:")
+url_label.grid(row=0, column=0, padx=10, pady=10)
 
-base_password_label = tk.Label(root, text="Enter Base Password:")
-base_password_label.pack()
+url_entry = ttk.Entry(root)
+url_entry.grid(row=0, column=1, padx=10, pady=10)
 
-base_password_entry = tk.Entry(root, show="*")
-base_password_entry.pack()
+base_password_label = ttk.Label(root, text="기본 비밀번호 입력:")
+base_password_label.grid(row=1, column=0, padx=10, pady=10)
 
-generate_button = tk.Button(
-    root, text="Generate Password", command=generate_password)
-generate_button.pack()
+base_password_entry = ttk.Entry(root, show="*")
+base_password_entry.grid(row=1, column=1, padx=10, pady=10)
 
-generated_password_label = tk.Label(root, text="Generated Password: ")
-generated_password_label.pack()
+generate_button = ttk.Button(
+    root, text="비밀번호 생성", command=generate_password)
+generate_button.grid(row=2, columnspan=2, pady=10)
+
+generated_password_label = ttk.Label(root, text="생성된 비밀번호: ")
+generated_password_label.grid(row=3, columnspan=2, padx=10, pady=10)
 
 root.mainloop()
